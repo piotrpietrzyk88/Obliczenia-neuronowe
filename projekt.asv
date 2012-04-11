@@ -6,6 +6,16 @@ close all;
 % 1     - model Micha³
 model = 0;
 
+
+% Training_Algorithm - wybór metody uczenia
+% 1 - algorytm wstecznej propagacji
+% 2 - rekursywna wersja wstecznej propagacji
+% 3 - metoda Levenberga - Marquardta
+% 4 - wersja metody Levenberga - Marquardta oszczêdzaj¹ca pamiêæ
+% 5 - metoda Gaussa - Newtona
+Training_Algorithm = 1;
+
+
 % dlugosc - liczba probek do uczenia
 dlugosc = 100;
 % NetDef      - struktura sieci
@@ -50,7 +60,12 @@ w2 = [];
 NN = [ 3 3 1 ];
 NetDef=['HHHHHH';'H-----'];
 
+m = 
+n = 
+[OrderIndexMat]=lipschit(U,Y,m,n);
 
+switch Training_Algorithm
+    case 1
 %% batbp parameters
 %{    
 BATCH VERSION OF THE BACK-PROPAGATION ALGORITHM.
@@ -99,7 +114,7 @@ BATCH VERSION OF THE BACK-PROPAGATION ALGORITHM.
  LastEditDate  : Jan 15, 2000
 %}
 [W1,W2,crit_vector,iter]=batbp(NetDef,w1,w2,U,Y,trparms);
-
+    case 2
 %% incbp parameters
 %{
 RECURSIVE (=INCREMENTAL) VERSION OF THE BACKPROPAGATION ALGORITHM.
@@ -147,8 +162,8 @@ RECURSIVE (=INCREMENTAL) VERSION OF THE BACKPROPAGATION ALGORITHM.
  Programmed by : Magnus Norgaard, IAU/IMM, Technical University of Denmark
  LastEditDate  : Jan. 15, 2000
 %}
-
-
+[W1,W2,crit_vector,iter]=incbp(NetDef,w1,w2,U,Y,trparms);
+    case 3
 %% marq parameters
 %{
 TRAIN A TWO LAYER NEURAL NETWORK WITH THE LEVENBERG-MARQUARDT METHOD.
@@ -204,9 +219,8 @@ TRAIN A TWO LAYER NEURAL NETWORK WITH THE LEVENBERG-MARQUARDT METHOD.
  Written by : Magnus Norgaard, IAU/IMM, Tecnical University of Denmark
  LastEditDate  : Jan 15, 2000
 %}
-
-[W1,W2,crit_vector,iter,lambda]=marq(NetDef,w1,w2,PHI,Y,trparms);
-
+[W1,W2,crit_vector,iter,lambda]=marq(NetDef,w1,w2,U,Y,trparms);
+    case 4
 %% marqlm parameters
 %{
 LEVENBERG-MARQUARDT TRAINING ALGORITHM THAT USES LESS MEMORY
@@ -219,7 +233,8 @@ LEVENBERG-MARQUARDT TRAINING ALGORITHM THAT USES LESS MEMORY
  Written by : Magnus Norgaard, IAU/IMM, Technical Univ. of Denmark
  LastEditDate  : January 15, 2000
 %}
-
+[W1,W2,crit_vector,iter,lambda]=marqlm(NetDef,w1,w2,U,Y,trparms);
+    case 5
 %% rpe parameters
 %{
 TRAIN A TWO LAYER NEURAL NETWORK WITH A RECURSIVE PREDICTION ERROR
@@ -270,3 +285,5 @@ TRAIN A TWO LAYER NEURAL NETWORK WITH A RECURSIVE PREDICTION ERROR
  Programmed by : Magnus Norgaard, IAU/IMM, Technical University of Denmark 
  LastEditDate  : January 15, 2000
 %}
+[W1,W2,crit_vector,iter]=rpe(NetDef,w1,w2,U,Y,trparms);
+end
