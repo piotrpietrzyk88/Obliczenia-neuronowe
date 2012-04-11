@@ -6,13 +6,15 @@ close all;
 % 1     - model Micha³
 model = 0;
 
+% dlugosc - liczba probek do uczenia
+dlugosc = 100;
 
 % NetDef      - struktura sieci
 % w1, w2      - wagi pocz¹tkowe
 % U           - u
 % Y           - y
 
-U = ones(1,100)*rand();
+U = ones(1,dlugosc)*rand();
 x = zeros(1,length(U));
 x1 = zeros(1,length(U));
 x2 = zeros(1,length(U));
