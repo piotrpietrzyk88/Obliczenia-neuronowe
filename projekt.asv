@@ -53,7 +53,7 @@ NetDef=['HHHHHH';'H-----'];
 
 %% batbp parameters
 %{    
-Batch version of the back-propagation algorithm.
+BATCH VERSION OF THE BACK-PROPAGATION ALGORITHM.
 
  Given a set of corresponding input-output pairs and an initial network
  [W1,W2,critvec,iter]=batbp(NetDef,W1,W2,PHI,Y,trparms) trains the
@@ -73,6 +73,8 @@ Batch version of the back-propagation algorithm.
  matrices.
 
  See alternatively INCBP for the incremental/recursive back-propagation.
+
+==>[W1,W2,PI_vector,iter]=batbp(NetDef,W1,W2,PHI,Y,trparms)
 
  INPUT:
  NetDef : Network definition 
@@ -96,14 +98,11 @@ Batch version of the back-propagation algorithm.
  Programmed by : Magnus Norgaard, IAU/IMM, DTU
  LastEditDate  : Jan 15, 2000
 %}
-
 [W1,W2,crit_vector,iter]=batbp(NetDef,w1,w2,U,Y,trparms);
-
-[W1,W2, NSSEvec,iter,lambda]=nnarx(NetDef,NN,W1,W2,trparms,Y,U);
 
 %% incbp parameters
 %{
-Recursive (=incremental) version of the backpropagation algorithm.
+RECURSIVE (=INCREMENTAL) VERSION OF THE BACKPROPAGATION ALGORITHM.
 
  Given a set of corresponding input-output pairs and an initial network
  [W1,W2,critvec,iter]=INCBP(NetDef,W1,W2,PHI,Y,trparms) trains a
@@ -123,6 +122,8 @@ Recursive (=incremental) version of the backpropagation algorithm.
  matrices.
 
  See alternatively BATBP for the batch version of back-propagation.
+
+==>[W1,W2,PI_vector,iter]=incbp(NetDef,W1,W2,PHI,Y,trparms)
 
  INPUT:
  NetDef: Network definition 
@@ -147,10 +148,10 @@ Recursive (=incremental) version of the backpropagation algorithm.
  LastEditDate  : Jan. 15, 2000
 %}
 
+
 %% marq parameters
 %{
-             Train a two layer neural network with the Levenberg-Marquardt
-             method.
+TRAIN A TWO LAYER NEURAL NETWORK WITH THE LEVENBERG-MARQUARDT METHOD.
 
          If desired, it is possible to use regularization by
          weight decay. Also pruned (ie. not fully connected) networks can
@@ -178,6 +179,7 @@ Recursive (=incremental) version of the backpropagation algorithm.
          Notice that the bias is included as the last column in the weight
          matrices.
 
+==>[W1,W2,PI_vector,iteration,lambda]=marq(NetDef,W1,W2,PHI,Y,trparms)
 
  INPUT:
  NetDef : Network definition .
@@ -207,10 +209,12 @@ Recursive (=incremental) version of the backpropagation algorithm.
 
 %% marqlm parameters
 %{
-           Levenberg-Marquardt training algorithm that uses less memory
-           than MARQ but is slower. The difference in speed occurs because
-           the function is less 'vectorized' (which is a MATLAB problem)
-           but also because some calculations are made more than once.
+LEVENBERG-MARQUARDT TRAINING ALGORITHM THAT USES LESS MEMORY
+     THAN MARQ BUT IS SLOWER. THE DIFFERENCE IN SPEED OCCURS BECAUSE
+     THE FUNCTION IS LESS 'VECTORIZED' (WHICH IS A MATLAB PROBLEM)
+     BUT ALSO BECAUSE SOME CALCULATIONS ARE MADE MORE THAN ONCE.
+
+==>[W1,W2,PI_vector,iteration,lambda]=marqlm(NetDef,W1,W2,PHI,Y,trparms)
 
  Written by : Magnus Norgaard, IAU/IMM, Technical Univ. of Denmark
  LastEditDate  : January 15, 2000
@@ -218,9 +222,9 @@ Recursive (=incremental) version of the backpropagation algorithm.
 
 %% rpe parameters
 %{
-         Train a two layer neural network with a recursive prediction error
-         algorithm ("recursive Gauss-Newton"). Also pruned (i.e., not fully
-         connected) networks can be trained.
+TRAIN A TWO LAYER NEURAL NETWORK WITH A RECURSIVE PREDICTION ERROR
+    ALGORITHM ("RECURSIVE GAUSS-NEWTON"). ALSO PRUNED (I.E., NOT FULLY
+    CONNECTED) NETWORKS CAN BE TRAINED.
 
          The activation functions can either be linear or tanh. The network
          architecture is defined by the matrix 'NetDef', which has of two
