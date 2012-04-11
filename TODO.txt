@@ -1,0 +1,20 @@
+Kroki projektowe:
+
+1. Przygotuj ciag ucz¹cy.
+2. Przygotuj ci¹g waliduj¹cy.
+3. Okreœl rz¹d modelu.
+4. Okreœl strukturê sieci.
+5. Trenuj sieæ ci¹giem ucz¹cym.
+6. Waliduj sieæ ci¹giem waliduj¹cym.
+7. Korelacja b³êdu.
+8. Histogram b³êdu predykcji.
+9. SprawdŸ odpowiedŸ na:
+- szum bia³y
+- sygna³ prostok¹tny
+- sygna³ sinusoidalny
+- sygna³ chirp
+- skok jednostkowy
+- szum bia³y zsumowany z ci¹giem walidacyjnym
+10. Walidacja sieci po u¿yciu 'nnprune'.
+11. Korelacja b³êdu.
+12. Histogram b³êdu predykcji.
