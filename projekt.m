@@ -1,24 +1,39 @@
 clear all;
 close all;
 
-% NetDef        - struktura sieci
-% w1, w2        - wagi pocz¹tkowe
+% model - wybór modelu
+% 0     - model PePe
+% 1     - model Micha³
+model = 0;
+
+
+% NetDef      - struktura sieci
+% w1, w2      - wagi pocz¹tkowe
 % U           - u
-% Y             - y
+% Y           - y
 
 U = ones(1,100)*rand();
+x = zeros(1,length(U));
 x1 = zeros(1,length(U));
 x2 = zeros(1,length(U));
 Y = zeros(1,length(U));
 x1(1) = 0;
 x2(1) = U(1);
 
-for k = 1:length(U)
-    x1(k+1) = 0.5*x2(k) + 0.2*x1(k)*x2(k);
-    x2(k+1) = -0.3*x1(k) + 0.8*x2(k) + U(k);
-    Y(k) = x1(k) + (x2(k))^2;
-end
 
+if model == 0
+    for k = 1:length(U)
+        x1(k+1) = 0.5*x2(k) + 0.2*x1(k)*x2(k);
+        x2(k+1) = -0.3*x1(k) + 0.8*x2(k) + U(k);
+        Y(k) = x1(k) + (x2(k))^2;
+    end
+elseif model == 1
+    for k = 1:length(U)
+        x(k+1) = x(k) + U(k);
+        Y(k) = (x(k))^2;
+    end   
+    
+end
 
 
 %% settrain parameters 
