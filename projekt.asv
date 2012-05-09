@@ -4,8 +4,7 @@ close all;
 % model - wybór modelu
 % 0     - model PePe
 % 1     - model Micha³
-model = 0;
-
+model = 1;
 
 % Training_Algorithm - wybór metody uczenia
 % 1 - algorytm wstecznej propagacji
@@ -15,15 +14,20 @@ model = 0;
 % 5 - metoda Gaussa - Newtona
 Training_Algorithm = 1;
 
-
 % dlugosc - liczba probek do uczenia
 dlugosc = 100;
+
 % NetDef      - struktura sieci
 % w1, w2      - wagi pocz¹tkowe
 % U           - u
 % Y           - y
 
-U = ones(1,dlugosc)*rand();
+U = ones(1,dlugosc);
+
+for a=1:dlugosc
+    b=(rand()*2)-1;
+    U(a) = b;
+end
 x = zeros(1,length(U));
 x1 = zeros(1,length(U));
 x2 = zeros(1,length(U));
@@ -49,6 +53,10 @@ end
 
 %% settrain parameters 
 trparms = settrain; % Set trparms to default
+
+% wypisuje wszystkie parametry
+% settrain(trparms);
+
 % maxiter       - maksymalna liczba iteracji
 % critmin       - kryterium stopu
 % eta           - krok
@@ -57,12 +65,17 @@ trparms = settrain(trparms,'maxiter',1000,'critmin',1e-4, 'eta',0.02,'skip',5);
 
 w1 = [];
 w2 = [];
-NN = [ 3 3 1 ];
-NetDef=['HHHHHH';'H-----'];
 
-m = 
-n = 
-[OrderIndexMat]=lipschit(U,Y,m,n);
+NetDef=['HHHHHHHHHH';'L---------'];
+
+% IO = floor(dlugosc*0.01);
+IO = 10;
+[OrderIndexMat]=lipschit(U,Y,1:IO,1:IO);
+
+NN = [ 4 4 1 ];
+[w1,w2,PI_vector,iteration,lambda]=nnarx(NetDef,NN,w1,w2,trparms,Y,U);
+
+
 
 switch Training_Algorithm
     case 1

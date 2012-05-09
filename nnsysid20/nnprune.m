@@ -186,7 +186,7 @@ elseif strcmp(method,'nnoe'),
   nc = 0;
 else
   disp('Unknown method!!!!!!!!');
-  break
+  return
 end
 
 if mflag==2 | mflag==3,
@@ -381,7 +381,7 @@ end
 
   % >>>>>>>>>>>>    PLOT THE PI's AND THE CURRENT NETWORK STRUCTURE   <<<<<<<<<<<<<
   % --- Draw PI's ---
-  figure(1);
+  figure(11);
   pvec=[reduced pvec];
   if TestDataFlag
     plot(pvec,PI_vector(pvec),'x',pvec,FPE_vector(pvec),'+',...
@@ -396,10 +396,10 @@ end
   drawnow
      
   % --- Draw pruned network ---
-  figure(2);
+  figure(22);
   drawnet(W1,W2,eps);
   title(['Network after having pruned ',int2str(pr),' weights']);
-  figure(2); drawnow
+  figure(22); drawnow
 
 
   % >>>>>>>>>>>>>  ELIMINATE THE WEIGHT HAVING THE SMALLEST SALIENCY  <<<<<<<<<<<<<

@@ -34,7 +34,7 @@ elseif strcmp(method,'nnoe'),
   mflag=4;
 else
   disp('Unknown method!!!!!!!!');
-  break
+  return
 end
 
 

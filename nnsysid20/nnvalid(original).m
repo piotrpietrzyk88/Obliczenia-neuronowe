@@ -1,5 +1,4 @@
-function [Yhat,PI,fig1,fig2,fig3]=nnvalid(method,NetDef,NN,W1,W2,par1,par2,par3)
-% [Yhat,PI,fig1,fig2,fig3]=nnvalid(method,NetDef,NN,W1,W2,par1,par2,par3)
+function [Yhat,PI]=nnvalid(method,NetDef,NN,W1,W2,par1,par2,par3)
 %  NNVALID
 %  ------- 
 %          Validate a neural network input-output model of a dynamic system.
@@ -61,7 +60,7 @@ elseif strcmp(method,'nnarxm'),
   if nargin>7, U=par3; end
 else
   disp('Unknown method!!!!!!!!');
-  %break
+  return
 end
 
 
@@ -247,7 +246,7 @@ si=figure-1;
 
 % ---------- Output, Prediction and Prediction error ----------
 for ii=1:outputs,
- fig1=figure(si+ii);
+ figure(si+ii)
  subplot(211)
  plot(Y(ii,:),'b-'); hold on
  plot(Yhat(ii,:),'r--');hold off
@@ -271,7 +270,7 @@ end
 
 % --------- Correlation functions ----------
 for ii=1:outputs,
-  fig2=figure(si+outputs+ii);
+  figure(si+outputs+ii)
   subplot(nu+1,1,1);
   M=min(25,N-1);
   Eauto=crossco(E(ii,:),E(ii,:),M);
@@ -329,7 +328,7 @@ for t=1:N,
   dy2dx(:,t) = dl(:);
 end
 
-fig3=figure(si+2*outputs+1);
+figure(si+2*outputs+1)
 subplot(212)
 plot(dy2dx(1:outputs*inputs,:)')
 title('Linearized network parameters')
