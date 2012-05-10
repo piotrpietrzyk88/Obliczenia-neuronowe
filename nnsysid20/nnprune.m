@@ -381,7 +381,7 @@ end
 
   % >>>>>>>>>>>>    PLOT THE PI's AND THE CURRENT NETWORK STRUCTURE   <<<<<<<<<<<<<
   % --- Draw PI's ---
-  figure(11);
+  figure(111);
   pvec=[reduced pvec];
   if TestDataFlag
     plot(pvec,PI_vector(pvec),'x',pvec,FPE_vector(pvec),'+',...
@@ -396,10 +396,10 @@ end
   drawnow
      
   % --- Draw pruned network ---
-  figure(22);
+  figure(222);
   drawnet(W1,W2,eps);
   title(['Network after having pruned ',int2str(pr),' weights']);
-  figure(22); drawnow
+  figure(222); drawnow
 
 
   % >>>>>>>>>>>>>  ELIMINATE THE WEIGHT HAVING THE SMALLEST SALIENCY  <<<<<<<<<<<<<

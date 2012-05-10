@@ -4,7 +4,7 @@ close all;
 % model - wybór modelu
 % 0     - model PePe
 % 1     - model Micha³
-model = 1;
+model = 0;
 
 % Training_Algorithm - wybór metody uczenia
 % 1 - algorytm wstecznej propagacji
