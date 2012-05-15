@@ -49,7 +49,7 @@ nmax        = max([na,nb+nk-1]);
 nab         = na+sum(nb);
 
 % -- Initialize weights if nescessary --
-if isempty(W1)| isempty(W2),
+if isempty(W1)|| isempty(W2),
   hidden = length(NetDef(1,:));    % Number of hidden neurons
   W1 = rand(hidden,nab+1)-0.5;
   W2 = rand(1,hidden+1)-0.5;

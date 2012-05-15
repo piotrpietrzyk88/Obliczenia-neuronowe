@@ -1,0 +1,36 @@
+% function [minNSSEvec,iter] = zadanie_projektowe(model,obcinanie_wag,rysuj_blad_uczenia,dlugosc_uczenie,dlugosc_walidacja,typ_sygnal_uczacy,typ_sygnal_walidujacy,typSieci,rzadModelu)
+
+blad_paramD_changing = zeros(3,40);
+i=1;
+for typUczenia = 2                          %[1,2]
+    for dlugosc_ciag_ucz =  [200, 250, 300, 350, 400, 450, 500, 550, 600, 650]
+        for paramD = 1e-3                       %[1e-3, 1e-4, 1e-5]
+            for paramCritMin = [1e-5 1e-6 1e-7 1e-8]
+                [minNSSEvec,iter] = zadanie_projektowe(0,0,1,dlugosc_ciag_ucz,200,'prostokat','white',2,3,typUczenia,paramD,paramCritMin);
+                blad_paramD_changing(1,i) = minNSSEvec;
+                blad_paramD_changing(2,i) = iter;
+                blad_paramD_changing(3,i) = dlugosc_ciag_ucz;
+                i=i+1;
+            end
+
+        end
+    end
+end
+
+critterm_5 = blad_paramD_changing(:,1:4:40);
+critterm_6 = blad_paramD_changing(:,2:4:40);
+critterm_7 = blad_paramD_changing(3:4:40,:);
+critterm_8 = blad_paramD_changing(4:4:40,:);
+
+figure(901);
+subplot(2,2,1);
+plot(crit1e_5(:,3),crit1e_5(:,1));
+subplot(2,2,2);
+plot(crit1e_6(:,3),crit1e_6(:,1));
+subplot(2,2,3);
+plot(crit1e_7(:,3),crit1e_7(:,1));
+subplot(2,2,4);
+plot(crit1e_8(:,3),crit1e_8(:,1));
+
+
+
